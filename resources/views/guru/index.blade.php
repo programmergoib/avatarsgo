@@ -7,43 +7,45 @@
 background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(9,9,121,1) 20%, rgba(0,212,255,1) 95%);">
             <img src="https://images.unsplash.com/photo-1633332755192-727a05c4013d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8dXNlcnxlbnwwfHwwfHw%3D&w=1000&q=80" class="rounded float-start" alt="Cinque Terre" style="height: 60px;">
             <h5 class="text-center text-white mt-3">
-                &nbsp;Hai, Muarif Zamzam Nur
+                &nbsp;Hai, {{auth()->user()->name}}
             </h5>
         </div>
     </div>
     <div class="card">
         <div class="card-body">
-            <p>Status Kehadiran</p>
+            <p>Statistik Kelas Hari Ini</p>
             <div class="row">
-                <div class="col-5">
-                    <div class="card">
-                        <div class="card-body">
-                            <div class="row">
-                                <div class="col-3">
-                                    <i class="bi bi-bookmark-star-fill" style="color:green"></i>
-                                </div>
-                                <div class="col-9" style="color:green;">
-                                    Hadir
-                                </div>
-                            </div>
+                <div class="col-6 mt-2">
+                    <div class="card ">
+                        <h5 class="card-header">Hadir</h5>
+                        <div class="card-body bg-success">
+                            <h5 class="card-title text-white">{{ $hadir }}</h5>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="row mt-3">
-                <div class="col-6">
-                    <div class="badge bg-primary float-start">71 point</div>
+                <div class="col-6 mt-2">
+                    <div class="card">
+                        <h5 class="card-header">Sakit</h5>
+                        <div class="card-body bg-warning">
+                            <h5 class="card-title text-white">{{ $sakit }}</h5>
+                        </div>
+                    </div>
                 </div>
-                <div class="col-6">
-                    <div class="badge bg-danger float-end">71 point</div>
+                <div class="col-6 mt-2">
+                    <div class="card">
+                        <h5 class="card-header">Izin</h5>
+                        <div class="card-body bg-info">
+                            <h5 class="card-title text-white">{{ $izin }}</h5>
+                        </div>
+                    </div>
                 </div>
-            </div>
-            <div class="row mt-2">
-                <div class="col-6">
-                    <small>Point Penghargaan</small>
-                </div>
-                <div class="col-6">
-                    <small class="float-end">Point Pelanggaran</small>
+                <div class="col-6 mt-2">
+                    <div class="card">
+                        <h5 class="card-header">Alfa</h5>
+                        <div class="card-body bg-danger">
+                            <h5 class="card-title text-white">{{ $alfa }}</h5>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -51,14 +53,36 @@ background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(9,9,121,1) 20%, rgba(
 
     <div class="card mt-3">
         <div class="card-header">
-            Informasi
+            Chart
         </div>
         <ul class="list-group list-group-flush">
-            <li class="list-group-item">
-                <div class="badge bg-danger"></div> <i class="bi bi-bookmark-check-fill"></i>&nbsp;Kehadiran <button class="btn btn-primary float-end"><i class="bi bi-info-square-fill"></i></button>
-            </li>
-            <li class="list-group-item"><i class="bi bi-award-fill"></i>&nbsp;Penghargaan <button class="btn btn-primary float-end"><i class="bi bi-info-square-fill"></i></button></li>
-            <li class="list-group-item"><i class="bi bi-x-octagon-fill"></i>&nbsp;Pelanggaran<button class="btn btn-primary float-end"><i class="bi bi-info-square-fill"></i></button></li>
+            <div>
+                <canvas id="myChart"></canvas>
+                <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+                <script>
+                    const ctx = document.getElementById('myChart');
+
+                    new Chart(ctx, {
+                        type: 'bar',
+                        data: {
+                            labels: ['Hadir', 'Alfa', 'Sakit', 'Izin'],
+                            datasets: [{
+                                label: '# of Votes',
+                                data: ['<?= $hadir ?>', '<?= $alfa ?>', '<?= $sakit ?>', '<?= $izin ?>'],
+                                borderWidth: 1
+                            }]
+                        },
+                        options: {
+                            scales: {
+                                y: {
+                                    beginAtZero: true
+                                }
+                            }
+                        }
+                    });
+                </script>
+            </div>
         </ul>
     </div>
 </div>
@@ -66,17 +90,13 @@ background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(9,9,121,1) 20%, rgba(
 <nav class="navbar navbar-dark bg-info navbar-expand d-md-none d-lg-none d-xl-none fixed-bottom">
     <ul class="navbar-nav nav-justified w-100">
         <li class="nav-item">
-            <a href="#" class="nav-link"><i class="bi bi-house-door-fill"></i></a>
+            <a href="{{ url('guru/dashboard') }}" class="nav-link"><i class="bi bi-house-door-fill"></i></a>
         </li>
         <li class="nav-item">
-            <a href="{{ url('ortu/kinerja') }}" class="nav-link"><i class="bi bi-bookmark-star-fill"></i></a>
-        </li>
-        <a href="{{ url('ortu/kinerja') }}" class="nav-link"><i class="bi bi-bookmark-star-fill"></i></a>
-        <li class="nav-item">
-            <a href="#" class="nav-link"><i class="bi bi-bar-chart-fill"></i></a>
+            <a href="{{ url('guru/absensi') }}" class="nav-link"><i class="bi bi-bookmark-star-fill"></i></a>
         </li>
         <li class="nav-item">
-            <a href="{{ url('ortu/profil') }}" class="nav-link active"><i class="bi bi-person-circle"></i></a>
+            <a href="{{ url('guru/profil') }}" class="nav-link active"><i class="bi bi-person-circle"></i></a>
         </li>
     </ul>
 </nav>

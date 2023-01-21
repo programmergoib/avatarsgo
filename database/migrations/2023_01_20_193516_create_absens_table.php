@@ -17,6 +17,7 @@ return new class extends Migration
             $table->id();
             $table->string("nis");
             $table->date("tanggal_absen");
+            $table->integer('kode_rombel');
             $table->string("semester");
             $table->string("tahun_pelajaran");
             $table->timestamps();
