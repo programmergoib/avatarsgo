@@ -6,14 +6,18 @@
     <div class="card">
         <div class="card-header">Absen Kelas</div>
         <div class="card-body">
-            <div class="" style="overflow: scroll;height: 600px;">
+            <div class="" style="overflow: scroll;height: 400px;">
                 @php
                 $no = 1;
                 @endphp
                 <ul class="list-group">
                     @foreach($rombel as $row)
-                    <li class="list-group-item">{{ $row->rombel }} <a href="{{ route('guru.detailabsensi',$row->kode_rombel) }}" class="btn btn-primary float-end">Absen</a></li>
-                    @endforeach
+                    @php
+                    $query = \App\Models\Absen::where(['kode_rombel'=> $row->kode_rombel, 'tanggal_absen'=> date('Y-m-d')])->count();
+                    @endphp
+                    @if($query<=0) <li class="list-group-item">{{ $row->rombel }} <a href="{{ route('guru.detailabsensi',$row->kode_rombel) }}" class="btn btn-primary float-end">Absen</a></li>
+                        @endif
+                        @endforeach
                 </ul>
             </div>
         </div>

@@ -75,4 +75,8 @@ class GuruDashboardController extends Controller
             return redirect(url('guru/dashboard'));
         }
     }
+    public function profil()
+    {
+        return view('guru.profil');
+    }
 }

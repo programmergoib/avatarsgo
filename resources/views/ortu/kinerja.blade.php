@@ -18,27 +18,27 @@
     @endphp
     @endif
     @endforeach
-    <h5>Statistik Kinerja</h5>
+    <h5 style="font-size:16px">Statistik Kinerja</h5>
     <div class="row">
         <div class="col-6 mt-2">
             <div class="card ">
-                <h5 class="card-header">Reward</h5>
+                <h5 class="text-center" style="font-size:12px;">Reward</h5>
                 <div class="card-body bg-primary">
-                    <h5 class="card-title text-white">{{ $reward }}</h5>
+                    <h5 class="card-title text-white text-center" >{{ $reward }}</h5>
                 </div>
             </div>
         </div>
         <div class="col-6 mt-2">
             <div class="card">
-                <h5 class="card-header">Pelanggaran</h5>
+                <h5 class="text-center" style="font-size:12px;">Pelanggaran</h5>
                 <div class="card-body bg-danger">
-                    <h5 class="card-title text-white">{{ $pelanggaran }}</h5>
+                    <h5 class="card-title text-white text-center">{{ $pelanggaran }}</h5>
                 </div>
             </div>
         </div>
     </div>
-    <H5 class="mt-3">History Kinerja</H5>
-    <div class="" style="overflow: scroll;height: 366px;">
+    <H5 class="mt-3" style="font-size:16px">History Kinerja</H5>
+    <div class="" style="overflow: scroll;height: 366px;padding:20px;">
         @php
         $pelanggaran = 0;
         $reward = 0;
@@ -46,29 +46,29 @@
         @foreach($kinerja as $row)
         @if($row->poin->kelompok_kerja == "PUNISHMENT")
         <div class="card">
-            <div class="card-body bg-danger">
-                <h5 class="card-title text-white">{{ $row->poin->nama_kinerja }}</h5>
-                <p class="card-text text-white">
-                    @php
-                    $pelanggaran += $row->poin->poin;
-                    @endphp
-                <div class="badge bg-success">Point : {{ $row->poin->poin }}</div>
-                </p>
-                <p class="card-text text-white">Tanggal Kejadian : {{ $row->tanggal_kejadian }}</p>
+            <div class="alert alert-success">
+                <div class="row">
+                    <div class="col-4"> <h5 class="card-title" style="font-size:12px">{{ $row->poin->nama_kinerja }}</h5></div>
+                      <div class="col-4">                <p class="card-text" style="font-size:12px">{{ date('d-m-Y', strtotime($row->kejadian)) }}</p></div>
+                        <div class="col-4">              <p class="card-text" style="font-size:12px">Poin : <div class="badge bg-danger">{{ $row->poin->poin }}</div></p></div>
+               
+
+
+              </div>
             </div>
         </div>
         @endif
         @if($row->poin->kelompok_kerja == "REWARD")
         <div class="card">
-            <div class="card-body bg-primary">
-                <h5 class="card-title text-white">{{ $row->poin->nama_kinerja }}</h5>
-                <p class="card-text text-white">
-                    @php
-                    $reward += $row->poin->poin;
-                    @endphp
-                <div class="badge bg-danger">Point : {{ $row->poin->poin }}</div>
-                </p>
-                <p class="card-text text-white">Tanggal Kejadian : {{ $row->tanggal_kejadian }}</p>
+           <div class="alert alert-success">
+                <div class="row">
+                    <div class="col-4"> <h5 class="card-title" style="font-size:12px">{{ $row->poin->nama_kinerja }}</h5></div>
+                      <div class="col-4">                <p class="card-text" style="font-size:12px">{{ date('d-m-Y', strtotime($row->kejadian)) }}</p></div>
+                        <div class="col-4">              <p class="card-text" style="font-size:12px">Poin : <div class="badge bg-primary">{{ $row->poin->poin }}</div> </p></div>
+               
+
+
+              </div>
             </div>
         </div>
         @endif

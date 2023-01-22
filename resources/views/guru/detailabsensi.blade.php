@@ -11,7 +11,7 @@
             $selector=1;
             $option = 2;
             @endphp
-            <div class="" style="overflow: scroll;height: 550px;">
+            <div class="" style="overflow: scroll;height: 400px;">
 
                 <form action="{{ route('guru.store') }}" method="post">
                     @csrf
@@ -59,15 +59,22 @@
 
                         </li>
                     </ul>
+               
                     @php
                     $option++
                     @endphp
                     @endif
                     @endforeach
+                                     <ul class="list-group">
+                        <li class="list-group-item">
+
+                               <button type="submit" class="btn btn-primary float-end">Kirim</button>
+                        </li>
+                    </ul>
             </div>
         </div>
         <div class=" card-footer">
-            <button type="submit" class="btn btn-primary">Kirim</button>
+            
         </div>
         </form>
     </div>

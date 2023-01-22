@@ -22,15 +22,15 @@ $reward += $row->poin->poin;
         <div class="card-body" style="height: 100px;background: rgb(2,0,36);
 background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(9,9,121,1) 20%, rgba(0,212,255,1) 95%);">
             <img src="https://images.unsplash.com/photo-1633332755192-727a05c4013d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8dXNlcnxlbnwwfHwwfHw%3D&w=1000&q=80" class="rounded float-start" alt="Cinque Terre" style="height: 60px;">
-            <h5 class="text-center text-white mt-3">
-                &nbsp;Hai, {{ $siswa->nama }} <br>
+            <h5 class="text-center text-white mt-3" style="font-size:16px;">
+                &nbsp;{{$siswa->nama}} <br>
                 <div class="badge bg-danger mt-2">{{ $siswa->rombel->rombel }}</div>
             </h5>
         </div>
     </div>
     <div class="card">
         <div class="card-body">
-            <p>Status Kehadiran</p>
+            <small>Status Kehadiran</small>
             <div class="row">
                 <div class="col-5">
                     <div class="card">
