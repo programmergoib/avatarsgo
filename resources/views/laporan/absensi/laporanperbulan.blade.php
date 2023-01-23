@@ -13,20 +13,20 @@
     <div class="col-md-12">
         <ul class="nav nav-tabs">
             <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="{{ url('admin/absensi') }}">Absensi Siswa</a>
+                <a class="nav-link active" aria-current="page" href="{{ url('admin/absensi') }}">Laporan Per Rombel (Bulan)</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link " href="{{ url('admin/absensi/riwayat') }}">Riwayat Absensi</a>
+                <a class="nav-link " href="{{ url('admin/absensi/riwayat') }}">Laporan Per Rombel (Semester)</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="{{ url('admin/absensi/ubah') }}">Ubah Absensi Siswa</a>
+                <a class="nav-link" href="{{ url('admin/absensi/ubah') }}">Laporan Per Rombel (Periode)</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="{{ url('admin/absensi/tidakhadirhariini') }}">Tidak Masuk Hari Ini</a>
+                <a class="nav-link" href="{{ url('admin/absensi/tidakhadirhariini') }}">Laporan Per Rombel (Persiswa)</a>
             </li>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="{{ url('admin/absensi/tidakhadirtigahari') }}">Tidak Masuk 3 Hari Berturut Turut</a>
+                <a class="nav-link" href="{{ url('admin/absensi/tidakhadirtigahari') }}">Laporan Per Rombel (Alasan Izin)</a>
             </li>
         </ul>
         <div class="row">
@@ -37,8 +37,20 @@
                             @csrf
                             @method('POST')
                             <div class="form-inline">
-                                <label for="" class="form-label">Tanggal</label>&nbsp;
-                                <input type="date" name="tanggal_absen" class="form-control" value="{{ date('Y-m-d') }}">
+                                <select name="tahun" id="" class="form-control">
+                                    <option value="">Bulan</option>
+                                    <?php
+                                    for ($i = 1; $i <= 12; $i++) {
+                                        if ($i < 10) {
+                                            $bln = "0" . $i;
+                                        } else {
+                                            $bln = $i;
+                                        } ?>
+                                        <option value="<?php echo $bln; ?>" <?php if ($bln == @$bulan) {
+                                                                                echo "selected";
+                                                                            } ?>><?php $aksi->bulan($bln); ?></option>
+                                    <?php } ?>
+                                </select>
                                 <label for="" class="form-label">Rombel</label>&nbsp;
                                 <select name="kode_rombel" id="" class="form-control">
                                     <option value="">Pilih Rombel</option>
@@ -51,12 +63,10 @@
                         </form>
                     </div>
                     <div class="card-body">
-
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
-
 @endsection

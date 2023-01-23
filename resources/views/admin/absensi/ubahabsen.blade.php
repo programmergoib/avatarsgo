@@ -13,13 +13,13 @@
     <div class="col-md-12">
         <ul class="nav nav-tabs">
             <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="{{ url('admin/absensi') }}">Absensi Siswa</a>
+                <a class="nav-link " aria-current="page" href="{{ url('admin/absensi') }}">Absensi Siswa</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link " href="{{ url('admin/absensi/riwayat') }}">Riwayat Absensi</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="{{ url('admin/absensi/ubah') }}">Ubah Absensi Siswa</a>
+                <a class="nav-link active" href="{{ url('admin/absensi/ubah') }}">Ubah Absensi Siswa</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="{{ url('admin/absensi/tidakhadirhariini') }}">Tidak Masuk Hari Ini</a>
@@ -33,7 +33,7 @@
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-header">
-                        <form action="{{ route('search') }}" method="post">
+                        <form action="{{ route('ubah') }}" method="post">
                             @csrf
                             @method('POST')
                             <div class="form-inline">

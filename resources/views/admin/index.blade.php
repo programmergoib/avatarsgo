@@ -2,6 +2,11 @@
 
 @section('content')
 <!-- Info boxes -->
+<script>
+  setTimeout(function(){
+    window.location.reload()
+  },10000)
+</script>
 <div class="row">
     <div class="col-12 col-sm-6 col-md-3">
         <div class="info-box">
@@ -106,6 +111,7 @@
                                         $no = 1;
                                         @endphp
                                         @foreach($tidak_hadir as $row)
+                                        @if($row->status!="Hadir")
                                         <tr>
                                             <td>{{ $no++ }}</td>
                                             <td>{{ $row->nis }}</td>
@@ -114,6 +120,7 @@
 
                                             <td>{{ $row->status}}</td>
                                         </tr>
+                                        @endif
                                         @endforeach
                                     </tbody>
                                 </table>
